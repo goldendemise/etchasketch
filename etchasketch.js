@@ -3,6 +3,10 @@ const scriptDiv = document.querySelector('script');
 const bodyNode = document.createElement('article');
 const body = document.querySelector('body');
 body.appendChild(bodyNode);
+bodyNode.style.maxWidth = "900px";
+bodyNode.style.maxHeight = "900px";
+
+//bodyNode.style.display = "flex";
 
 // //TODO: build a grid
 const buildRows = function(parentDiv,number) {
@@ -11,7 +15,10 @@ const buildRows = function(parentDiv,number) {
     parentDiv.appendChild(rowDiv);
     rowDiv.classList.add("row");
     //rowDiv.textContent = i+1;
-    rowDiv.style.display = "inline-block";
+    rowDiv.style.display = "flex";
+    rowDiv.style.flexFlow = "row wrap";
+  rowDiv.style.justifyContent = "center";
+  rowDiv.style.width = "100%";
   }
 }
 buildRows(bodyNode,16);
@@ -22,11 +29,13 @@ const buildColumns = function(parentRow,number) {
     parentRow.appendChild(rowChild);
     rowChild.classList.add("etchasketch");
     //rowChild.textContent = i + 1;
-    rowChild.style.width = "20px";
-    rowChild.style.height = "20px";
+    rowChild.style.flex = "1 1 auto";
+    rowChild.style.height = ".5em";
+    rowChild.style.width = ".5em";
     //rowChild.style.backgroundColor = "black";
-    rowChild.style.margin = "3px";
+    //rowChild.style.margin = ".1em";
     rowChild.style.border = "1px black solid";
+    rowChild.style.alignItems = "stretch";
   }
 }
 
@@ -48,6 +57,10 @@ const buttonPrompt = () => {
   //console.log("BUTTON CLICKED");
 bodyNode.innerHTML = "";
 gridNumber = prompt("Enter grid size");
+if(gridNumber > 64) {
+  alert("ERROR");
+  return;
+}
 console.log(gridNumber);
 buildRows(bodyNode,gridNumber);
 let rowNodeList = document.querySelectorAll('.row');
