@@ -40,7 +40,7 @@ const buildColumns = function(parentRow,number) {
     //rowChild.style.margin = ".1em";
     rowChild.style.border = "1px black solid";
     rowChild.style.alignItems = "stretch";
-    rowChild.style.
+    rowChild.style.transition = "all 0.25s ease";
   }
 }
 
