@@ -9,26 +9,26 @@ bodyNode.style.maxHeight = "900px";
 //bodyNode.style.display = "flex";
 
 // //TODO: build a grid
-const buildRows = function(parentDiv,number) {
-  for(i=0;i<number;i++) {
+const buildRows = function(parentDiv, number) {
+  for (i = 0; i < number; i++) {
     let rowDiv = document.createElement('section');
     parentDiv.appendChild(rowDiv);
     rowDiv.classList.add("row");
     //rowDiv.textContent = i+1;
     heightCal = 900 / number;
-  console.log(heightCal * 100);
+    console.log(heightCal * 100);
     rowDiv.style.display = "flex";
     rowDiv.style.flexFlow = "row wrap";
-  rowDiv.style.justifyContent = "center";
-  rowDiv.style.width = "100%";
-  rowDiv.style.height= heightCal + 'px' ;
-  //rowDiv.style.height = "100%";
+    rowDiv.style.justifyContent = "center";
+    rowDiv.style.width = "100%";
+    rowDiv.style.height = heightCal + 'px';
+    //rowDiv.style.height = "100%";
+  }
 }
-}
-buildRows(bodyNode,16);
+buildRows(bodyNode, 16);
 
-const buildColumns = function(parentRow,number) {
-  for(i=0;i<number;i++) {
+const buildColumns = function(parentRow, number) {
+  for (i = 0; i < number; i++) {
     let rowChild = document.createElement('div');
     parentRow.appendChild(rowChild);
     rowChild.classList.add("etchasketch");
@@ -45,13 +45,13 @@ const buildColumns = function(parentRow,number) {
 }
 
 const rowNodeList = document.querySelectorAll('.row');
-rowNodeList.forEach( (row) => {
-  buildColumns(row,16);
+rowNodeList.forEach((row) => {
+  buildColumns(row, 16);
 });
 
 const eas = document.querySelectorAll('.etchasketch');
 
-eas.forEach( (div) => {
+eas.forEach((div) => {
   div.addEventListener('mouseover', (e) => {
     let hue = 'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')';
     div.style.backgroundColor = hue;
@@ -61,27 +61,27 @@ let gridNumber;
 const button = document.querySelector('#clearGrid');
 const buttonPrompt = () => {
   //console.log("BUTTON CLICKED");
-bodyNode.innerHTML = "";
-gridNumber = prompt("Enter grid size");
-if(gridNumber > 64) {
-  alert("ERROR: Number must be below 64");
-  return;
-}
-console.log(gridNumber);
-buildRows(bodyNode,gridNumber);
-let rowNodeList = document.querySelectorAll('.row');
-rowNodeList.forEach( (row) => {
-  buildColumns(row,gridNumber);
-});
-const eas = document.querySelectorAll('.etchasketch');
-eas.forEach( (div) => {
-  div.addEventListener('mouseover', (e) => {
-    let hue = 'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')';
-    div.style.backgroundColor = hue;
+  bodyNode.innerHTML = "";
+  gridNumber = prompt("Enter grid size");
+  if (gridNumber > 64) {
+    alert("ERROR: Number must be below 64");
+    return;
+  }
+  console.log(gridNumber);
+  buildRows(bodyNode, gridNumber);
+  let rowNodeList = document.querySelectorAll('.row');
+  rowNodeList.forEach((row) => {
+    buildColumns(row, gridNumber);
   });
-});
+  const eas = document.querySelectorAll('.etchasketch');
+  eas.forEach((div) => {
+    div.addEventListener('mouseover', (e) => {
+      let hue = 'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')';
+      div.style.backgroundColor = hue;
+    });
+  });
 }
 
-button.addEventListener('click',(e) => {
+button.addEventListener('click', (e) => {
   buttonPrompt();
 });
