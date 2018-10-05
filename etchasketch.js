@@ -15,11 +15,15 @@ const buildRows = function(parentDiv,number) {
     parentDiv.appendChild(rowDiv);
     rowDiv.classList.add("row");
     //rowDiv.textContent = i+1;
+    heightCal = 900 / number;
+  console.log(heightCal * 100);
     rowDiv.style.display = "flex";
     rowDiv.style.flexFlow = "row wrap";
   rowDiv.style.justifyContent = "center";
   rowDiv.style.width = "100%";
-  }
+  rowDiv.style.height= heightCal + 'px' ;
+  //rowDiv.style.height = "100%";
+}
 }
 buildRows(bodyNode,16);
 
@@ -30,12 +34,13 @@ const buildColumns = function(parentRow,number) {
     rowChild.classList.add("etchasketch");
     //rowChild.textContent = i + 1;
     rowChild.style.flex = "1 1 auto";
-    rowChild.style.height = ".5em";
-    rowChild.style.width = ".5em";
+    rowChild.style.maxHeight = "100%";
+    rowChild.style.maxWidth = "100%";
     //rowChild.style.backgroundColor = "black";
     //rowChild.style.margin = ".1em";
     rowChild.style.border = "1px black solid";
     rowChild.style.alignItems = "stretch";
+    rowChild.style.
   }
 }
 
@@ -48,7 +53,8 @@ const eas = document.querySelectorAll('.etchasketch');
 
 eas.forEach( (div) => {
   div.addEventListener('mouseover', (e) => {
-    div.style.backgroundColor = "black";
+    let hue = 'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')';
+    div.style.backgroundColor = hue;
   });
 });
 let gridNumber;
@@ -58,7 +64,7 @@ const buttonPrompt = () => {
 bodyNode.innerHTML = "";
 gridNumber = prompt("Enter grid size");
 if(gridNumber > 64) {
-  alert("ERROR");
+  alert("ERROR: Number must be below 64");
   return;
 }
 console.log(gridNumber);
@@ -70,7 +76,8 @@ rowNodeList.forEach( (row) => {
 const eas = document.querySelectorAll('.etchasketch');
 eas.forEach( (div) => {
   div.addEventListener('mouseover', (e) => {
-    div.style.backgroundColor = "black";
+    let hue = 'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')';
+    div.style.backgroundColor = hue;
   });
 });
 }
